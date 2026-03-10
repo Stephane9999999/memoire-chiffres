@@ -1,0 +1,314 @@
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0f0f1a;
+  --surface: #1a1a2e;
+  --surface2: #16213e;
+  --accent: #4f8ef7;
+  --accent2: #7c3aed;
+  --correct: #22c55e;
+  --wrong: #ef4444;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --radius: 16px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { height: 100%; }
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: radial-gradient(ellipse at top, #1a1a3e 0%, var(--bg) 70%);
+}
+
+/* ── Screens ── */
+.screen {
+  width: 100%;
+  max-width: 480px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 40px 32px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Menu ── */
+.logo { font-size: 64px; line-height: 1; }
+
+h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.rules {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface2);
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.rule-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: white;
+  box-shadow: 0 4px 16px rgba(79, 142, 247, 0.3);
+}
+
+.btn-primary:hover { filter: brightness(1.1); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; filter: none; }
+
+.btn-secondary {
+  background: var(--surface2);
+  color: var(--text-muted);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.btn-secondary:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+.btn-large { padding: 14px 40px; font-size: 1.1rem; width: 100%; }
+
+/* ── Level badge ── */
+.level-badge {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: white;
+  padding: 4px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* ── Instruction ── */
+.instruction {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* ── Sequence display ── */
+.sequence-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.digit {
+  width: 56px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  background: var(--surface2);
+  border-radius: 12px;
+  border: 2px solid rgba(79, 142, 247, 0.3);
+  color: var(--accent);
+  box-shadow: 0 0 16px rgba(79, 142, 247, 0.15);
+}
+
+/* ── Countdown ── */
+.countdown {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.countdown-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: var(--surface2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.countdown-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 999px;
+  transition: width 0.9s linear;
+}
+
+.countdown-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ── Input phase ── */
+.sequence-input-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.digit-slot {
+  width: 56px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  background: var(--surface2);
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.1);
+  color: var(--text);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.digit-slot.filled {
+  border-color: var(--accent);
+  box-shadow: 0 0 16px rgba(79, 142, 247, 0.25);
+}
+
+.hidden-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 1px;
+  height: 1px;
+}
+
+.hint {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ── Result ── */
+.result-icon {
+  font-size: 64px;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.text-correct { color: var(--correct); }
+.text-wrong   { color: var(--wrong); }
+
+.result-sequence-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.result-sequence .digit {
+  border-color: rgba(255,255,255,0.1);
+  box-shadow: none;
+  color: var(--text);
+  font-size: 1.6rem;
+  width: 48px;
+  height: 54px;
+}
+
+.stats {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.stat {
+  background: var(--surface2);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.result-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.result-actions .btn { width: 100%; }
+
+/* ── Mobile ── */
+@media (max-width: 400px) {
+  .screen { padding: 28px 20px; gap: 18px; }
+  .digit, .digit-slot { width: 44px; height: 54px; font-size: 1.6rem; }
+  h1 { font-size: 1.6rem; }
+}
